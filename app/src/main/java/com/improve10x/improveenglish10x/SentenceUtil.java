@@ -1,10 +1,111 @@
 package com.improve10x.improveenglish10x;
 
+import java.util.LinkedHashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class SentenceUtil {
 
-    public static String generateSentence(String subject, String verb, String object, String tense, boolean isPositive) {
+    private Map<String, String> pastVerbs = new LinkedHashMap<>();
+
+    public SentenceUtil() {
+        // Load this data from firebase in Splash
+        pastVerbs.put("awake", "awoke");
+        pastVerbs.put("be", "was");
+        pastVerbs.put("beat", "beat");
+        pastVerbs.put("become", "became");
+        pastVerbs.put("begin", "began");
+        pastVerbs.put("bend", "bent");
+        pastVerbs.put("bet", "bet");
+        pastVerbs.put("bid", "bid");
+        pastVerbs.put("bite", "bit");
+        pastVerbs.put("blow", "blew");
+        pastVerbs.put("break", "broke");
+        pastVerbs.put("bring", "brought");
+        pastVerbs.put("broadcast", "broadcast");
+        pastVerbs.put("build", "built");
+        pastVerbs.put("burn", "burned");
+        pastVerbs.put("buy", "bought");
+        pastVerbs.put("catch", "caught");
+        pastVerbs.put("choose", "chose");
+        pastVerbs.put("come", "came");
+        pastVerbs.put("cost", "cost");
+        pastVerbs.put("cut", "cut");
+        pastVerbs.put("dig", "dug");
+        pastVerbs.put("do", "did");
+        pastVerbs.put("draw", "drew");
+        pastVerbs.put("dream", "dreamed");
+        pastVerbs.put("drive", "drove");
+        pastVerbs.put("drink", "drank");
+        pastVerbs.put("eat", "ate");
+        pastVerbs.put("fall", "fell");
+        pastVerbs.put("feel", "felt");
+        pastVerbs.put("fight", "fought");
+        pastVerbs.put("find", "found");
+        pastVerbs.put("fly", "flew");
+        pastVerbs.put("forget", "forgot");
+        pastVerbs.put("forgive", "forgave");
+        pastVerbs.put("freeze", "froze");
+        pastVerbs.put("get", "got");
+        pastVerbs.put("give", "gave");
+        pastVerbs.put("go", "went");
+        pastVerbs.put("grow", "grew");
+        pastVerbs.put("hang", "hung");
+        pastVerbs.put("have", "had");
+        pastVerbs.put("hear", "heard");
+        pastVerbs.put("hide", "hid");
+        pastVerbs.put("hit", "hit");
+        pastVerbs.put("hold", "held");
+        pastVerbs.put("hurt", "hurt");
+        pastVerbs.put("keep", "kept");
+        pastVerbs.put("know", "knew");
+        pastVerbs.put("lay", "laid");
+        pastVerbs.put("lead", "led");
+        pastVerbs.put("learn", "learned");
+        pastVerbs.put("leave", "left");
+        pastVerbs.put("lend", "lent");
+        pastVerbs.put("let", "let");
+        pastVerbs.put("lie", "lay");
+        pastVerbs.put("lose", "lost");
+        pastVerbs.put("make", "made");
+        pastVerbs.put("mean", "meant");
+        pastVerbs.put("meet", "met");
+        pastVerbs.put("pay", "paid");
+        pastVerbs.put("put", "put");
+        pastVerbs.put("read", "read");
+        pastVerbs.put("ride", "rode");
+        pastVerbs.put("ring", "rang");
+        pastVerbs.put("rise", "rose");
+        pastVerbs.put("run", "ran");
+        pastVerbs.put("say", "said");
+        pastVerbs.put("see", "saw");
+        pastVerbs.put("sell", "sold");
+        pastVerbs.put("send", "sent");
+        pastVerbs.put("show", "showed");
+        pastVerbs.put("shut", "shut");
+        pastVerbs.put("sing", "sang");
+        pastVerbs.put("sink", "sank");
+        pastVerbs.put("sit", "sat");
+        pastVerbs.put("sleep", "slept");
+        pastVerbs.put("speak", "spoke");
+        pastVerbs.put("spend", "spent");
+        pastVerbs.put("stand", "stood");
+        pastVerbs.put("stink", "stank");
+        pastVerbs.put("swim", "swam");
+        pastVerbs.put("take", "took");
+        pastVerbs.put("teach", "taught");
+        pastVerbs.put("tear", "tore");
+        pastVerbs.put("tell", "told");
+        pastVerbs.put("think", "thought");
+        pastVerbs.put("throw", "threw");
+        pastVerbs.put("understand", "understood");
+        pastVerbs.put("wake", "woke");
+        pastVerbs.put("wear", "wore");
+        pastVerbs.put("win", "won");
+        pastVerbs.put("write", "wrote");
+    }
+
+    public String generateSentence(String subject, String verb, String object, String tense, boolean isPositive) {
         String sentence = "";
         if (tense.equalsIgnoreCase("present")) {
             if (subject.equalsIgnoreCase("I")) {
@@ -22,7 +123,7 @@ public class SentenceUtil {
         return sentence;
     }
 
-    private static String getPerfectTenseForVerb(String tense, String verb, boolean isPositive) {
+    private String getPerfectTenseForVerb(String tense, String verb, boolean isPositive) {
         String tenseInCaps = tense.toUpperCase(Locale.ROOT);
         boolean endsWithE = false;
         boolean endsWithY = false;
@@ -42,7 +143,9 @@ public class SentenceUtil {
         switch (tenseInCaps) {
             case "PAST":
                 if (isPositive) {
-                    if (endsWithE) {
+                    if(pastVerbs.containsKey(verb.toLowerCase(Locale.ROOT))) {
+                        return pastVerbs.get(verb.toLowerCase(Locale.ROOT));
+                    } else if (endsWithE) {
                         return verb + "d";
                     } else if (endsWithY) {
                         return verb.substring(0, verb.length() - 1) + "ied";
@@ -90,4 +193,6 @@ public class SentenceUtil {
         }
         return false;
     }
+    // TODO : Add write - wrote in map
+    // beat, eat,
 }
