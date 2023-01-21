@@ -110,13 +110,15 @@ public class SentenceUtil {
         if (tense.equalsIgnoreCase("present")) {
             if (subject.equalsIgnoreCase("I")) {
                 sentence = subject + " am " + getPerfectTenseForVerb(tense, verb, isPositive) + " " + object;
-            } else if (subject.equalsIgnoreCase("WE")) {
+            } else if (subject.equalsIgnoreCase("WE") || subject.equalsIgnoreCase("THEY")) {
                 sentence = subject + " are " + getPerfectTenseForVerb(tense, verb, isPositive) + " " + object;
+            } else if (subject.equalsIgnoreCase("IT") ||
+                    subject.equalsIgnoreCase("SHE") ||
+                    subject.equalsIgnoreCase("HE")) {
+                sentence = subject + " is " + getPerfectTenseForVerb(tense, verb, isPositive) + " " + object;
             } else {
                 sentence = subject + getPerfectTenseForVerb(tense, verb, isPositive);
             }
-        } else if((subject.equalsIgnoreCase("code"))) {
-            sentence = subject + " " + getPerfectTenseForVerb(tense, verb, isPositive);
         } else {
             sentence = subject + " " + getPerfectTenseForVerb(tense, verb, isPositive) + " " + object;
         }
