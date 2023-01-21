@@ -10,6 +10,7 @@ import com.improve10x.improveenglish10x.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
+    private SentenceUtil sentenceUtil = new SentenceUtil();
     private ActivityMainBinding binding;
 
     @Override
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         RadioButton selectedTense = findViewById(binding.tenseRg.getCheckedRadioButtonId());
         String tense = selectedTense.getText().toString();
         Boolean isPositive = binding.positiveSwitch.isChecked();
-        String sentence = SentenceUtil.generateSentence(subject,
+        String sentence = sentenceUtil.generateSentence(subject,
                 verbOrAction, objectText, tense, isPositive);
         binding.sentenseTxt.setText(sentence);
     }

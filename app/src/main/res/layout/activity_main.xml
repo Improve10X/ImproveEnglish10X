@@ -25,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/tense_rg"
         app:layout_constraintEnd_toStartOf="@+id/verb_or_action_layout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@id/guideline2"
@@ -49,7 +50,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Code" />
+            android:text="Code"
+            android:visibility="gone" />
     </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -110,6 +112,7 @@
         android:id="@+id/positive_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:checked="true"
         android:minHeight="48dp"
         android:text="Positive"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
