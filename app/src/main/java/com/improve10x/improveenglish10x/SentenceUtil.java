@@ -120,6 +120,7 @@ public class SentenceUtil {
         } else {
             sentence = subject + " " + getPerfectTenseForVerb(tense, verb, isPositive) + " " + object;
         }
+        sentence += ".";
         return sentence;
     }
 
