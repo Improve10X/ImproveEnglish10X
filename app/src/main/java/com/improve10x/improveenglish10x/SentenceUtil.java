@@ -31,6 +31,7 @@ public class SentenceUtil {
         pastVerbs.put("come", "came");
         pastVerbs.put("cost", "cost");
         pastVerbs.put("cut", "cut");
+        pastVerbs.put("develop", "developed");
         pastVerbs.put("dig", "dug");
         pastVerbs.put("do", "did");
         pastVerbs.put("draw", "drew");

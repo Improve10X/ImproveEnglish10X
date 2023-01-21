@@ -46,12 +46,32 @@
             android:text="We" />
 
         <RadioButton
-            android:id="@+id/code_rb"
+            android:id="@+id/he_rb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Code"
-            android:visibility="gone" />
+            android:text="He"/>
+
+        <RadioButton
+            android:id="@+id/she_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="She"/>
+
+        <RadioButton
+            android:id="@+id/it_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="It"/>
+
+        <RadioButton
+            android:id="@+id/they_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="They"/>
     </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
