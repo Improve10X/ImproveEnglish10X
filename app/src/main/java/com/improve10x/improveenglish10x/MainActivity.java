@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         if(!isValidInformation()) return;
         RadioButton selectedSubject = findViewById(binding.subjectRg.getCheckedRadioButtonId());
         String subject = selectedSubject.getText().toString();
-        String verbOrAction = binding.verbOrActionLayout.getEditText().toString();
+        String verbOrAction = binding.verbOrActionLayout.getEditText().getText().toString();
         String objectText = binding.objectLayout.getEditText().getText().toString();
         RadioButton selectedTense = findViewById(binding.tenseRg.getCheckedRadioButtonId());
         String tense = selectedTense.getText().toString();
@@ -51,10 +51,6 @@ public class MainActivity extends AppCompatActivity {
         }
         if(binding.verbOrActionLayout.getEditText().getText().toString().trim().isEmpty()) {
             toast("Please enter the Verb/Action word");
-            return false;
-        }
-        if(binding.objectLayout.getEditText().getText().toString().trim().isEmpty()) {
-            toast("Please enter the object word");
             return false;
         }
         return true;
