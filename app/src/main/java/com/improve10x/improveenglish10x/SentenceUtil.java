@@ -37,7 +37,7 @@ public class SentenceUtil {
                 checkIfEndingWithVowel(verb.substring(0, verb.length() - 1)) &&
                 !checkIfEndingWithVowel(verb)) {
             vowelBeforeConsonant = true;
-            lastChar = verb.substring(verb.length() - 2, verb.length() - 1);
+            lastChar = verb.charAt(verb.length() - 1) + "";
         }
         switch (tenseInCaps) {
             case "PAST":
