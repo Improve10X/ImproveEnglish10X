@@ -10,12 +10,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.common.collect.Lists;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,7 +26,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.improve10x.improveenglish10x.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void setupVerbsAdapter() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, SentenceUtil.suggestionVerbs);
+        binding.verbOrActionTxt.setAdapter(adapter);
+    }
+
     private void fetchPastVerbs() {
         if(SentenceUtil.pastVerbs != null && !SentenceUtil.pastVerbs.isEmpty()) return;
         showProgress();
@@ -87,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
                 .document("/verbs")
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
-                    SentenceUtil.suggestionVerbs = documentSnapshot.get("data", String[].class);
+                    SentenceUtil.suggestionVerbs = documentSnapshot.toObject(Suggestions.class).data.toArray(new String[0]);
+                    setupVerbsAdapter();
                 })
                 .addOnFailureListener(e -> {
                     Log.e(TAG, e.getMessage(), e);

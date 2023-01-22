@@ -96,6 +96,7 @@
                 android:hint="Verb / Action">
 
                 <AutoCompleteTextView
+                    android:id="@+id/verb_or_action_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
