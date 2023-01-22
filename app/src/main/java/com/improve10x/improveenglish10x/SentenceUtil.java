@@ -123,7 +123,7 @@ public class SentenceUtil {
         } else {
             sentence = subject + " " + getPerfectTenseForVerb(tense, verb, isPositive) + " " + object;
         }
-        sentence += ".";
+        sentence = sentence.trim() + ".";
         return sentence;
     }
 
