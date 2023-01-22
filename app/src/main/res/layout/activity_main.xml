@@ -20,113 +20,133 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="16dp" />
 
-    <RadioGroup
-        android:id="@+id/subject_rg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/tense_rg"
-        app:layout_constraintEnd_toStartOf="@+id/verb_or_action_layout"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/tense_rg">
-
-        <RadioButton
-            android:id="@+id/i_rb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="I" />
-
-        <RadioButton
-            android:id="@+id/we_rb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="We" />
-
-        <RadioButton
-            android:id="@+id/he_rb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="He"/>
-
-        <RadioButton
-            android:id="@+id/she_rb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="She"/>
-
-        <RadioButton
-            android:id="@+id/it_rb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="It"/>
-
-        <RadioButton
-            android:id="@+id/they_rb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="They"/>
-    </RadioGroup>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/verb_or_action_layout"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        android:hint="Verb / Action"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:layout_constraintBottom_toTopOf="@+id/object_layout"
-        app:layout_constraintEnd_toStartOf="@+id/tense_rg"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/subject_rg"
-        app:layout_constraintTop_toTopOf="@id/tense_rg"
-        app:layout_constraintVertical_bias="0.5" >
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioGroup
+            android:id="@+id/subject_rg"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="48dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-    <RadioGroup
-        android:id="@+id/tense_rg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="@id/guideline3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/verb_or_action_layout"
-        tools:layout_editor_absoluteY="32dp">
+            <RadioButton
+                android:id="@+id/i_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I" />
 
-        <RadioButton
-            android:id="@+id/past_rb"
+            <RadioButton
+                android:id="@+id/we_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="We" />
+
+            <RadioButton
+                android:id="@+id/he_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="He"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/she_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="She"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/it_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="It"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/they_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="They"
+                android:visibility="gone" />
+        </RadioGroup>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Past" />
+            android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/present_rb"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/verb_or_action_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:hint="Verb / Action">
+
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:minHeight="48dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/object_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:hint="Object">
+
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:minHeight="48dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/tense_rg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Present" />
+            android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/future_rb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Future" />
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/past_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Past" />
+
+            <RadioButton
+                android:id="@+id/present_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Present" />
+
+            <RadioButton
+                android:id="@+id/future_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Future" />
+        </RadioGroup>
+
+    </LinearLayout>
 
     <Switch
         android:id="@+id/positive_switch"
@@ -137,16 +157,19 @@
         android:text="Positive"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@id/tense_rg" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <Button
         android:id="@+id/generate_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:text="Generate"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/reset_btn"
         app:layout_constraintTop_toBottomOf="@+id/positive_switch" />
 
     <TextView
@@ -157,31 +180,41 @@
         android:gravity="center_horizontal"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:text="TextView"
+        android:text="Sentence will be shown here"
         android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/generate_btn" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/object_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
+    <Button
+        android:id="@+id/reset_btn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="Object"
-        app:layout_constraintBottom_toTopOf="@+id/positive_switch"
-        app:layout_constraintEnd_toEndOf="@+id/verb_or_action_layout"
-        app:layout_constraintStart_toStartOf="@+id/verb_or_action_layout"
-        app:layout_constraintTop_toBottomOf="@+id/verb_or_action_layout"
-        app:layout_constraintVertical_bias="0.5">
+        android:text="Reset"
+        app:layout_constraintEnd_toStartOf="@+id/generate_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/generate_btn" />
 
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="48dp" />
-    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/level1_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I / We"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/level2_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/level2_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="She / He / It / They"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toEndOf="@+id/level1_btn"
+        app:layout_constraintTop_toTopOf="@+id/level1_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

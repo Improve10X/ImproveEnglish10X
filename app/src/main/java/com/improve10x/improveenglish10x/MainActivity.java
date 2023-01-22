@@ -3,6 +3,7 @@ package com.improve10x.improveenglish10x;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -19,11 +20,35 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         handleGenerateBtn();
+        handleLevel1Btn();
+        handleLevel2Btn();
     }
 
     private void handleGenerateBtn() {
         binding.generateBtn.setOnClickListener(v -> {
             generateSentence();
+        });
+    }
+
+    private void handleLevel1Btn() {
+        binding.level1Btn.setOnClickListener(v -> {
+            binding.iRb.setVisibility(View.VISIBLE);
+            binding.weRb.setVisibility(View.VISIBLE);
+            binding.heRb.setVisibility(View.GONE);
+            binding.sheRb.setVisibility(View.GONE);
+            binding.itRb.setVisibility(View.GONE);
+            binding.theyRb.setVisibility(View.GONE);
+        });
+    }
+
+    private void handleLevel2Btn() {
+        binding.level2Btn.setOnClickListener(v -> {
+            binding.iRb.setVisibility(View.GONE);
+            binding.weRb.setVisibility(View.GONE);
+            binding.heRb.setVisibility(View.VISIBLE);
+            binding.sheRb.setVisibility(View.VISIBLE);
+            binding.itRb.setVisibility(View.VISIBLE);
+            binding.theyRb.setVisibility(View.VISIBLE);
         });
     }
 
