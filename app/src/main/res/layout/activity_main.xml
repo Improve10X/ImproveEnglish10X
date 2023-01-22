@@ -201,19 +201,20 @@
 
     <Button
         android:id="@+id/level1_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="I / We"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/level2_btn"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@id/guideline2" />
 
     <Button
         android:id="@+id/level2_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="She / He / It / They"
+        android:layout_marginStart="8dp"
+        android:text="She/He/It/They"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toEndOf="@+id/level1_btn"
         app:layout_constraintTop_toTopOf="@+id/level1_btn" />
