@@ -14,9 +14,10 @@ public class SentenceUtil {
 
     public static List<Preposition> placePrepositions = new ArrayList<>();
     public static List<Preposition> timePrepositions = new ArrayList<>();
+    public static List<Preposition> otherPrepositions = new ArrayList<>();
     public static String[] suggestionVerbs = null;
 
-    public SentenceUtil(){
+    public SentenceUtil() {
         placePrepositions.add(new Preposition("in", "లో", "place"));
         placePrepositions.add(new Preposition("at", "వద్ద", "place"));
         placePrepositions.add(new Preposition("on", "పై", "place"));
@@ -44,6 +45,58 @@ public class SentenceUtil {
         timePrepositions.add(new Preposition("to/till/until", "వరకు", "time"));
         timePrepositions.add(new Preposition("till/until", "వరకు", "time"));
         timePrepositions.add(new Preposition("by", "కల్లా", "time"));
+
+        otherPrepositions.add(new Preposition("aboard", "", "others"));
+        otherPrepositions.add(new Preposition("about", "", "others"));
+        otherPrepositions.add(new Preposition("after", "", "others"));
+        otherPrepositions.add(new Preposition("against", "", "others"));
+        otherPrepositions.add(new Preposition("along", "", "others"));
+        otherPrepositions.add(new Preposition("amid", "", "others"));
+        otherPrepositions.add(new Preposition("among", "", "others"));
+        otherPrepositions.add(new Preposition("anti", "", "others"));
+        otherPrepositions.add(new Preposition("around", "", "others"));
+        otherPrepositions.add(new Preposition("as", "", "others"));
+        otherPrepositions.add(new Preposition("behind", "", "others"));
+        otherPrepositions.add(new Preposition("beneath", "", "others"));
+        otherPrepositions.add(new Preposition("besides", "", "others"));
+        otherPrepositions.add(new Preposition("between", "", "others"));
+        otherPrepositions.add(new Preposition("beyond", "", "others"));
+        otherPrepositions.add(new Preposition("but", "", "others"));
+        otherPrepositions.add(new Preposition("concerning", "", "others"));
+        otherPrepositions.add(new Preposition("considering", "", "others"));
+        otherPrepositions.add(new Preposition("despite", "", "others"));
+        otherPrepositions.add(new Preposition("down", "", "others"));
+        otherPrepositions.add(new Preposition("during", "", "others"));
+        otherPrepositions.add(new Preposition("except", "", "others"));
+        otherPrepositions.add(new Preposition("excepting", "", "others"));
+        otherPrepositions.add(new Preposition("excluding", "", "others"));
+        otherPrepositions.add(new Preposition("following", "", "others"));
+        otherPrepositions.add(new Preposition("inside", "", "others"));
+        otherPrepositions.add(new Preposition("like", "", "others"));
+        otherPrepositions.add(new Preposition("minus", "", "others"));
+        otherPrepositions.add(new Preposition("near", "", "others"));
+        otherPrepositions.add(new Preposition("of", "", "others"));
+        otherPrepositions.add(new Preposition("off", "", "others"));
+        otherPrepositions.add(new Preposition("opposite", "", "others"));
+        otherPrepositions.add(new Preposition("outside", "", "others"));
+        otherPrepositions.add(new Preposition("past", "", "others"));
+        otherPrepositions.add(new Preposition("per", "", "others"));
+        otherPrepositions.add(new Preposition("plus", "", "others"));
+        otherPrepositions.add(new Preposition("regarding", "", "others"));
+        otherPrepositions.add(new Preposition("round", "", "others"));
+        otherPrepositions.add(new Preposition("save", "", "others"));
+        otherPrepositions.add(new Preposition("than", "", "others"));
+        otherPrepositions.add(new Preposition("toward", "", "others"));
+        otherPrepositions.add(new Preposition("underneath", "", "others"));
+        otherPrepositions.add(new Preposition("unlike", "", "others"));
+        otherPrepositions.add(new Preposition("until", "", "others"));
+        otherPrepositions.add(new Preposition("up", "", "others"));
+        otherPrepositions.add(new Preposition("upon", "", "others"));
+        otherPrepositions.add(new Preposition("versus", "", "others"));
+        otherPrepositions.add(new Preposition("via", "", "others"));
+        otherPrepositions.add(new Preposition("with", "", "others"));
+        otherPrepositions.add(new Preposition("within", "", "others"));
+        otherPrepositions.add(new Preposition("without", "", "others"));
     }
 
     public String generateSentence(String subject, String verb, String object, String tense, String preposition, boolean isPositive) {
@@ -88,7 +141,7 @@ public class SentenceUtil {
         switch (tenseInCaps) {
             case "PAST":
                 if (isPositive) {
-                    if(pastVerbs.containsKey(verb.toLowerCase(Locale.ROOT))) {
+                    if (pastVerbs.containsKey(verb.toLowerCase(Locale.ROOT))) {
                         return pastVerbs.get(verb.toLowerCase(Locale.ROOT)).toString();
                     } else if (endsWithE) {
                         return verb + "d";
