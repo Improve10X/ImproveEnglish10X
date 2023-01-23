@@ -121,21 +121,17 @@
                     android:minHeight="48dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:id="@+id/preposition_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:strokeWidth="0dp"
-                app:cardBackgroundColor="#11FF5722"
                 android:layout_marginHorizontal="4dp"
-                android:layout_marginTop="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginHorizontal="4dp"
-                    android:paddingBottom="8dp">
+                android:layout_marginTop="8dp"
+                android:background="#22FF5722"
+                android:orientation="vertical"
+                android:paddingHorizontal="4dp"
+                android:paddingBottom="8dp"
+                android:visibility="gone">
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/preposition_type_rg"
@@ -186,8 +182,7 @@
                         android:gravity="center"
                         android:minHeight="48dp" />
                 </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/object_layout"
@@ -242,8 +237,10 @@
         android:checked="true"
         android:minHeight="48dp"
         android:text="Positive"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/preposition_switch"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <Button
@@ -322,5 +319,16 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toEndOf="@+id/level1_btn"
         app:layout_constraintTop_toTopOf="@+id/level1_btn" />
+
+    <Switch
+        android:id="@+id/preposition_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="Preposition"
+        app:layout_constraintEnd_toStartOf="@+id/positive_switch"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/positive_switch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

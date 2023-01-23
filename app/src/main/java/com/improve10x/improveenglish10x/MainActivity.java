@@ -100,6 +100,18 @@ public class MainActivity extends AppCompatActivity {
         handleReportBtn();
         handleLevel1Btn();
         handleLevel2Btn();
+        handlePrepositionsSwitch();
+    }
+
+    private void handlePrepositionsSwitch() {
+        binding.prepositionSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked) {
+                binding.prepositionContainer.setVisibility(View.VISIBLE);
+            } else {
+                binding.prepositionContainer.setVisibility(View.GONE);
+                binding.prepositionTxt.setText("");
+            }
+        });
     }
 
     private void handlePrepositionsRadioGroup() {
@@ -133,6 +145,8 @@ public class MainActivity extends AppCompatActivity {
             binding.tenseRg.clearCheck();
             binding.subjectRg.clearCheck();
             binding.positiveSwitch.setChecked(true);
+            binding.prepositionTxt.setText("");
+            binding.prepositionTypeRg.clearCheck();
         });
     }
 
