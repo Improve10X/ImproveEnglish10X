@@ -30,7 +30,11 @@ public class PrepositionsAdapter extends ArrayAdapter<Preposition> {
             convertView = LayoutInflater.from(getContext()).inflate(resource, parent, false);
         }
         Preposition preposition = getItem(position);
-        ((TextView)convertView).setText(preposition.value + " - " + preposition.teluguValue);
+        if(preposition.teluguValue == null || preposition.teluguValue.isEmpty()) {
+            ((TextView)convertView).setText(preposition.value);
+        } else {
+            ((TextView)convertView).setText(preposition.value + " - " + preposition.teluguValue);
+        }
         return convertView;
     }
 

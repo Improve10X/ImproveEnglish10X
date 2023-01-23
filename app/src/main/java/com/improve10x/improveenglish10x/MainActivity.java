@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
         } else if(type.equalsIgnoreCase("time")) {
             prepositionsAdapter.addAll(sentenceUtil.timePrepositions);
         } else {
-            prepositionsAdapter.addAll(sentenceUtil.placePrepositions);
-            prepositionsAdapter.addAll(sentenceUtil.timePrepositions);
+            prepositionsAdapter.addAll(sentenceUtil.otherPrepositions);
+            prepositionsAdapter.addAll(sentenceUtil.otherPrepositions);
         }
         prepositionsAdapter.notifyDataSetChanged();
     }
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             } else if(checkedId == R.id.preposition_time_rb) {
                 updatePrepositionsAdapter("time");
             } else {
-                updatePrepositionsAdapter("other");
+                updatePrepositionsAdapter("others");
             }
         });
     }
