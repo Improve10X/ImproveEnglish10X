@@ -125,11 +125,10 @@
                 android:id="@+id/preposition_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:strokeColor="@color/colorPrimary"
-                app:strokeWidth="1dp"
+                app:strokeWidth="0dp"
+                app:cardBackgroundColor="#11FF5722"
                 android:layout_marginHorizontal="4dp"
-                android:layout_marginTop="8dp"
-                android:background="#22FF5722">
+                android:layout_marginTop="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"

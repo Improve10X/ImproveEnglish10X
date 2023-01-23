@@ -27,6 +27,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 import com.improve10x.improveenglish10x.databinding.ActivityMainBinding;
+import com.improve10x.improveenglish10x.models.ErrorReport;
 import com.improve10x.improveenglish10x.models.Preposition;
 import com.improve10x.improveenglish10x.models.Suggestions;
 
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void handlePrepositionsRadioGroup() {
         binding.prepositionTypeRg.setOnCheckedChangeListener((group, checkedId) -> {
+            binding.prepositionTxt.dismissDropDown();
             if(checkedId == R.id.preposition_place_rb) {
                 updatePrepositionsAdapter("place");
             } else if(checkedId == R.id.preposition_time_rb) {
@@ -136,7 +138,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleReportBtn() {
         binding.reportBtn.setOnClickListener(v -> {
-            // TODO : Send the error details to server
+            ErrorReport errorReport = new ErrorReport(binding.sentenseTxt.getText().toString(),
+                    FirebaseAuth.getInstance().getCurrentUser().getEmail());
+            reportError(errorReport);
         });
     }
 
@@ -301,6 +305,23 @@ public class MainActivity extends AppCompatActivity {
                     sentenceUtil.updatePrepositions(prepositions);
                 })
                 .addOnFailureListener(e -> {
+                    Log.e(TAG, e.getMessage(), e);
+                    crashlytics.recordException(e);
+                });
+    }
+
+    private void reportError(ErrorReport errorReport) {
+        showProgress();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("/errorReports")
+                .add(errorReport)
+                .addOnSuccessListener(documentReference -> {
+                    hideProgress();
+                    toast("Error reported successfully.");
+                })
+                .addOnFailureListener(e -> {
+                    hideProgress();
+                    toast("Failed to report error. Please try again.");
                     Log.e(TAG, e.getMessage(), e);
                     crashlytics.recordException(e);
                 });
