@@ -1,4 +1,4 @@
-package com.improve10x.improveenglish10x;
+package com.improve10x.improveenglish10x.models;
 
 import java.io.Serializable;
 import java.util.List;

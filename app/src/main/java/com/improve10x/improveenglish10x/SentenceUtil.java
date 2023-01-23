@@ -1,6 +1,10 @@
 package com.improve10x.improveenglish10x;
 
+import com.improve10x.improveenglish10x.models.Preposition;
+
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -8,40 +12,38 @@ public class SentenceUtil {
 
     public static Map<String, Object> pastVerbs;
 
-    public static Map<String, String> prepositionsForPlace;
-    public static Map<String, String> prepositionsForTime;
+    public static List<Preposition> placePrepositions = new ArrayList<>();
+    public static List<Preposition> timePrepositions = new ArrayList<>();
     public static String[] suggestionVerbs = null;
 
     public SentenceUtil(){
-        prepositionsForPlace = new LinkedHashMap<String, String>();
-        prepositionsForPlace.put("in", 	"లో");
-        prepositionsForPlace.put("at",	"వద్ద");
-        prepositionsForPlace.put("on",	"పై");
-        prepositionsForPlace.put("by/ next to/ beside",	"ద్వారా");
-        prepositionsForPlace.put("under",	"కింద");
-        prepositionsForPlace.put("below",	"క్రింద");
-        prepositionsForPlace.put("over",	"పైగా");
-        prepositionsForPlace.put("above",	"పైన");
-        prepositionsForPlace.put("across",	"అంతటా");
-        prepositionsForPlace.put("through",	"ద్వారా");
-        prepositionsForPlace.put("to",	"కు");
-        prepositionsForPlace.put("into",	"లోకి");
-        prepositionsForPlace.put("towards",	"వైపు");
-        prepositionsForPlace.put("onto",	"పై");
-        prepositionsForPlace.put("from",	"నుండి");
+        placePrepositions.add(new Preposition("in", "లో", "place"));
+        placePrepositions.add(new Preposition("at", "వద్ద", "place"));
+        placePrepositions.add(new Preposition("on", "పై", "place"));
+        placePrepositions.add(new Preposition("by/next to/beside", "ద్వారా", "place"));
+        placePrepositions.add(new Preposition("under", "కింద", "place"));
+        placePrepositions.add(new Preposition("below", "క్రింద", "place"));
+        placePrepositions.add(new Preposition("over", "పైగా", "place"));
+        placePrepositions.add(new Preposition("above", "పైన", "place"));
+        placePrepositions.add(new Preposition("across", "అంతటా", "place"));
+        placePrepositions.add(new Preposition("through", "ద్వారా", "place"));
+        placePrepositions.add(new Preposition("to", "కు", "place"));
+        placePrepositions.add(new Preposition("into", "లోకి", "place"));
+        placePrepositions.add(new Preposition("towards", "వైపు", "place"));
+        placePrepositions.add(new Preposition("onto", "పై", "place"));
+        placePrepositions.add(new Preposition("from", "నుండి", "place"));
 
-        prepositionsForTime = new LinkedHashMap<>();
-        prepositionsForTime.put("on",	"కు / కి");
-        prepositionsForTime.put("in",	"లో");
-        prepositionsForTime.put("at",	"కు / కి");
-        prepositionsForTime.put("since",	"నుండి");
-        prepositionsForTime.put("for",	"కోసం");
-        prepositionsForTime.put("ago",	"క్రితం");
-        prepositionsForTime.put("before",	"ముందు");
-        prepositionsForTime.put("to",	"కు / కి");
-        prepositionsForTime.put("to / till / until",	"వరకు");
-        prepositionsForTime.put("till / until",	"వరకు");
-        prepositionsForTime.put("by",	"కల్లా");
+        timePrepositions.add(new Preposition("on", "కు / కి", "time"));
+        timePrepositions.add(new Preposition("in", "లో", "time"));
+        timePrepositions.add(new Preposition("at", "కు / కి", "time"));
+        timePrepositions.add(new Preposition("since", "నుండి", "time"));
+        timePrepositions.add(new Preposition("for", "కోసం", "time"));
+        timePrepositions.add(new Preposition("ago", "క్రితం", "time"));
+        timePrepositions.add(new Preposition("before", "ముందు", "time"));
+        timePrepositions.add(new Preposition("to", "కు / కి", "time"));
+        timePrepositions.add(new Preposition("to/till/until", "వరకు", "time"));
+        timePrepositions.add(new Preposition("till/until", "వరకు", "time"));
+        timePrepositions.add(new Preposition("by", "కల్లా", "time"));
     }
 
     public String generateSentence(String subject, String verb, String object, String tense, String preposition, boolean isPositive) {

@@ -17,18 +17,14 @@ import android.widget.Toast;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.common.collect.Lists;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.improve10x.improveenglish10x.databinding.ActivityMainBinding;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
+import com.improve10x.improveenglish10x.models.Preposition;
+import com.improve10x.improveenglish10x.models.Suggestions;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAnalytics analytics;
     private FirebaseCrashlytics crashlytics;
     private ProgressDialog progress;
+    private ArrayAdapter<Preposition> prepositionsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         getSupportActionBar().setTitle("Improve English 10X");
         setupFirebase();
+        setupPrepositionsAdapter();
         setupProgressBar();
         handleButtons();
         fetchData();
@@ -54,6 +52,25 @@ public class MainActivity extends AppCompatActivity {
     private void setupFirebase() {
         analytics = FirebaseAnalytics.getInstance(this);
         crashlytics = FirebaseCrashlytics.getInstance();
+    }
+
+    private void setupPrepositionsAdapter() {
+        prepositionsAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, sentenceUtil.placePrepositions);
+        binding.prepositionTxt.setAdapter(prepositionsAdapter);
+    }
+
+    private void updatePrepositionsAdapter(String type) {
+        prepositionsAdapter.clear();
+        if(type.equalsIgnoreCase("place")) {
+            prepositionsAdapter.addAll(sentenceUtil.placePrepositions);
+        } else if(type.equalsIgnoreCase("time")) {
+            prepositionsAdapter.addAll(sentenceUtil.timePrepositions);
+        } else {
+            prepositionsAdapter.addAll(sentenceUtil.placePrepositions);
+            prepositionsAdapter.addAll(sentenceUtil.timePrepositions);
+        }
+        prepositionsAdapter.notifyDataSetChanged();
     }
 
     private void setupProgressBar() {
@@ -68,11 +85,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleButtons() {
         handleSubjectRadioGroup();
+        handlePrepositionsRadioGroup();
         handleResetBtn();
         handleGenerateBtn();
         handleReportBtn();
         handleLevel1Btn();
         handleLevel2Btn();
+    }
+
+    private void handlePrepositionsRadioGroup() {
+        binding.prepositionTypeRg.setOnCheckedChangeListener((group, checkedId) -> {
+            if(checkedId == R.id.preposition_place_rb) {
+                updatePrepositionsAdapter("place");
+            } else if(checkedId == R.id.preposition_time_rb) {
+                updatePrepositionsAdapter("time");
+            } else {
+                updatePrepositionsAdapter("other");
+            }
+        });
     }
 
     private void handleSubjectRadioGroup() {
@@ -215,8 +245,9 @@ public class MainActivity extends AppCompatActivity {
         RadioButton selectedTense = findViewById(binding.tenseRg.getCheckedRadioButtonId());
         String tense = selectedTense.getText().toString();
         Boolean isPositive = binding.positiveSwitch.isChecked();
+        // TODO : set preposition
         String sentence = sentenceUtil.generateSentence(subject,
-                verbOrAction, objectText, tense, isPositive);
+                verbOrAction, objectText, tense, "", isPositive);
         binding.sentenseTxt.setText(sentence);
         logSentence(sentence);
     }
