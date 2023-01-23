@@ -17,86 +17,16 @@ public class SentenceUtil {
     public static List<Preposition> otherPrepositions = new ArrayList<>();
     public static String[] suggestionVerbs = null;
 
-    public SentenceUtil() {
-        placePrepositions.add(new Preposition("in", "లో", "place"));
-        placePrepositions.add(new Preposition("at", "వద్ద", "place"));
-        placePrepositions.add(new Preposition("on", "పై", "place"));
-        placePrepositions.add(new Preposition("by/next to/beside", "ద్వారా", "place"));
-        placePrepositions.add(new Preposition("under", "కింద", "place"));
-        placePrepositions.add(new Preposition("below", "క్రింద", "place"));
-        placePrepositions.add(new Preposition("over", "పైగా", "place"));
-        placePrepositions.add(new Preposition("above", "పైన", "place"));
-        placePrepositions.add(new Preposition("across", "అంతటా", "place"));
-        placePrepositions.add(new Preposition("through", "ద్వారా", "place"));
-        placePrepositions.add(new Preposition("to", "కు", "place"));
-        placePrepositions.add(new Preposition("into", "లోకి", "place"));
-        placePrepositions.add(new Preposition("towards", "వైపు", "place"));
-        placePrepositions.add(new Preposition("onto", "పై", "place"));
-        placePrepositions.add(new Preposition("from", "నుండి", "place"));
-
-        timePrepositions.add(new Preposition("on", "కు / కి", "time"));
-        timePrepositions.add(new Preposition("in", "లో", "time"));
-        timePrepositions.add(new Preposition("at", "కు / కి", "time"));
-        timePrepositions.add(new Preposition("since", "నుండి", "time"));
-        timePrepositions.add(new Preposition("for", "కోసం", "time"));
-        timePrepositions.add(new Preposition("ago", "క్రితం", "time"));
-        timePrepositions.add(new Preposition("before", "ముందు", "time"));
-        timePrepositions.add(new Preposition("to", "కు / కి", "time"));
-        timePrepositions.add(new Preposition("to/till/until", "వరకు", "time"));
-        timePrepositions.add(new Preposition("till/until", "వరకు", "time"));
-        timePrepositions.add(new Preposition("by", "కల్లా", "time"));
-
-        otherPrepositions.add(new Preposition("aboard", "", "others"));
-        otherPrepositions.add(new Preposition("about", "", "others"));
-        otherPrepositions.add(new Preposition("after", "", "others"));
-        otherPrepositions.add(new Preposition("against", "", "others"));
-        otherPrepositions.add(new Preposition("along", "", "others"));
-        otherPrepositions.add(new Preposition("amid", "", "others"));
-        otherPrepositions.add(new Preposition("among", "", "others"));
-        otherPrepositions.add(new Preposition("anti", "", "others"));
-        otherPrepositions.add(new Preposition("around", "", "others"));
-        otherPrepositions.add(new Preposition("as", "", "others"));
-        otherPrepositions.add(new Preposition("behind", "", "others"));
-        otherPrepositions.add(new Preposition("beneath", "", "others"));
-        otherPrepositions.add(new Preposition("besides", "", "others"));
-        otherPrepositions.add(new Preposition("between", "", "others"));
-        otherPrepositions.add(new Preposition("beyond", "", "others"));
-        otherPrepositions.add(new Preposition("but", "", "others"));
-        otherPrepositions.add(new Preposition("concerning", "", "others"));
-        otherPrepositions.add(new Preposition("considering", "", "others"));
-        otherPrepositions.add(new Preposition("despite", "", "others"));
-        otherPrepositions.add(new Preposition("down", "", "others"));
-        otherPrepositions.add(new Preposition("during", "", "others"));
-        otherPrepositions.add(new Preposition("except", "", "others"));
-        otherPrepositions.add(new Preposition("excepting", "", "others"));
-        otherPrepositions.add(new Preposition("excluding", "", "others"));
-        otherPrepositions.add(new Preposition("following", "", "others"));
-        otherPrepositions.add(new Preposition("inside", "", "others"));
-        otherPrepositions.add(new Preposition("like", "", "others"));
-        otherPrepositions.add(new Preposition("minus", "", "others"));
-        otherPrepositions.add(new Preposition("near", "", "others"));
-        otherPrepositions.add(new Preposition("of", "", "others"));
-        otherPrepositions.add(new Preposition("off", "", "others"));
-        otherPrepositions.add(new Preposition("opposite", "", "others"));
-        otherPrepositions.add(new Preposition("outside", "", "others"));
-        otherPrepositions.add(new Preposition("past", "", "others"));
-        otherPrepositions.add(new Preposition("per", "", "others"));
-        otherPrepositions.add(new Preposition("plus", "", "others"));
-        otherPrepositions.add(new Preposition("regarding", "", "others"));
-        otherPrepositions.add(new Preposition("round", "", "others"));
-        otherPrepositions.add(new Preposition("save", "", "others"));
-        otherPrepositions.add(new Preposition("than", "", "others"));
-        otherPrepositions.add(new Preposition("toward", "", "others"));
-        otherPrepositions.add(new Preposition("underneath", "", "others"));
-        otherPrepositions.add(new Preposition("unlike", "", "others"));
-        otherPrepositions.add(new Preposition("until", "", "others"));
-        otherPrepositions.add(new Preposition("up", "", "others"));
-        otherPrepositions.add(new Preposition("upon", "", "others"));
-        otherPrepositions.add(new Preposition("versus", "", "others"));
-        otherPrepositions.add(new Preposition("via", "", "others"));
-        otherPrepositions.add(new Preposition("with", "", "others"));
-        otherPrepositions.add(new Preposition("within", "", "others"));
-        otherPrepositions.add(new Preposition("without", "", "others"));
+    public void updatePrepositions(List<Preposition> prepositions) {
+        for (Preposition preposition: prepositions) {
+            if(preposition.type.equalsIgnoreCase("place")) {
+                placePrepositions.add(preposition);
+            } else if(preposition.type.equalsIgnoreCase("time")) {
+                timePrepositions.add(preposition);
+            } else if(preposition.type.equalsIgnoreCase("others")) {
+                otherPrepositions.add(preposition);
+            }
+        }
     }
 
     public String generateSentence(String subject, String verb, String object, String tense, String preposition, boolean isPositive) {

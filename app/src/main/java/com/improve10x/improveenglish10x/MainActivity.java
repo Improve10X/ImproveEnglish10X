@@ -23,9 +23,14 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.WriteBatch;
 import com.improve10x.improveenglish10x.databinding.ActivityMainBinding;
+import com.improve10x.improveenglish10x.models.Preposition;
 import com.improve10x.improveenglish10x.models.Suggestions;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -83,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
     private void fetchData() {
         fetchPastVerbs();
         fetchSuggestions();
+        fetchPrepositions();
     }
 
     private void handleButtons() {
@@ -283,5 +289,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void toast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void fetchPrepositions() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("/suggestionPrepositions")
+                .orderBy("value")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<Preposition> prepositions = queryDocumentSnapshots.toObjects(Preposition.class);
+                    sentenceUtil.updatePrepositions(prepositions);
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, e.getMessage(), e);
+                    crashlytics.recordException(e);
+                });
     }
 }
