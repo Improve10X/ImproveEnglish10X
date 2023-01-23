@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
-
+    id 'com.google.firebase.appdistribution'
 }
 
 android {
@@ -13,7 +13,7 @@ android {
         applicationId "com.improve10x.improveenglish10x"
         minSdk 21
         targetSdk 32
-        versionCode 1
+        versionCode 3
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -23,6 +23,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            firebaseAppDistribution {
+                appId="1:210055016583:android:a67423b23b0112d0af8822"
+                artifactType="AAB"
+                testers="vissu.info@gmail.com"
+            }
         }
     }
     compileOptions {

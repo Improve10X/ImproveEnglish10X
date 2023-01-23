@@ -44,15 +44,62 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getSupportActionBar().setTitle("Improve English 10X");
+        setupFirebase();
+        setupProgressBar();
+        handleButtons();
+        fetchData();
+    }
+
+    private void setupFirebase() {
         analytics = FirebaseAnalytics.getInstance(this);
         crashlytics = FirebaseCrashlytics.getInstance();
-        getSupportActionBar().setTitle("Improve English 10X");
+    }
+
+    private void setupProgressBar() {
         progress = new ProgressDialog(this);
-        handleGenerateBtn();
-        handleLevel1Btn();
-        handleLevel2Btn();
+        progress.setTitle("Please wait");
+    }
+
+    private void fetchData() {
         fetchPastVerbs();
         fetchSuggestions();
+    }
+
+    private void handleButtons() {
+        handleSubjectRadioGroup();
+        handleResetBtn();
+        handleGenerateBtn();
+        handleReportBtn();
+        handleLevel1Btn();
+        handleLevel2Btn();
+    }
+
+    private void handleSubjectRadioGroup() {
+        binding.subjectRg.setOnCheckedChangeListener((group, checkedId) -> {
+            if(checkedId == R.id.it_rb) {
+                binding.subjectItLayout.setVisibility(View.VISIBLE);
+            } else {
+                binding.subjectItTxt.setText("");
+                binding.subjectItLayout.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void handleResetBtn() {
+        binding.resetBtn.setOnClickListener(v -> {
+            binding.verbOrActionTxt.setText("");
+            binding.objectLayout.getEditText().setText("");
+            binding.tenseRg.clearCheck();
+            binding.subjectRg.clearCheck();
+            binding.positiveSwitch.setChecked(true);
+        });
+    }
+
+    private void handleReportBtn() {
+        binding.reportBtn.setOnClickListener(v -> {
+            // TODO : Send the error details to server
+        });
     }
 
     private void showProgress() {
@@ -163,8 +210,8 @@ public class MainActivity extends AppCompatActivity {
         if (!isValidInformation()) return;
         RadioButton selectedSubject = findViewById(binding.subjectRg.getCheckedRadioButtonId());
         String subject = selectedSubject.getText().toString();
-        String verbOrAction = binding.verbOrActionLayout.getEditText().getText().toString();
-        String objectText = binding.objectLayout.getEditText().getText().toString();
+        String verbOrAction = binding.verbOrActionLayout.getEditText().getText().toString().trim();
+        String objectText = binding.objectLayout.getEditText().getText().toString().trim();
         RadioButton selectedTense = findViewById(binding.tenseRg.getCheckedRadioButtonId());
         String tense = selectedTense.getText().toString();
         Boolean isPositive = binding.positiveSwitch.isChecked();
@@ -194,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
             toast("Please select the tense Past/Present/Future");
             return false;
         }
-        if (binding.verbOrActionLayout.getEditText().getText().toString().trim().isEmpty()) {
+        if (binding.verbOrActionTxt.getText().toString().trim().isEmpty()) {
             toast("Please enter the Verb/Action word");
             return false;
         }
