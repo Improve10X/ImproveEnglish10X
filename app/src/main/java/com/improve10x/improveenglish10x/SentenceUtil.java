@@ -8,7 +8,41 @@ public class SentenceUtil {
 
     public static Map<String, Object> pastVerbs;
 
+    public static Map<String, String> prepositionsForPlace;
+    public static Map<String, String> prepositionsForTime;
     public static String[] suggestionVerbs = null;
+
+    public SentenceUtil(){
+        prepositionsForPlace = new LinkedHashMap<String, String>();
+        prepositionsForPlace.put("in", 	"లో");
+        prepositionsForPlace.put("at",	"వద్ద");
+        prepositionsForPlace.put("on",	"పై");
+        prepositionsForPlace.put("by/ next to/ beside",	"ద్వారా");
+        prepositionsForPlace.put("under",	"కింద");
+        prepositionsForPlace.put("below",	"క్రింద");
+        prepositionsForPlace.put("over",	"పైగా");
+        prepositionsForPlace.put("above",	"పైన");
+        prepositionsForPlace.put("across",	"అంతటా");
+        prepositionsForPlace.put("through",	"ద్వారా");
+        prepositionsForPlace.put("to",	"కు");
+        prepositionsForPlace.put("into",	"లోకి");
+        prepositionsForPlace.put("towards",	"వైపు");
+        prepositionsForPlace.put("onto",	"పై");
+        prepositionsForPlace.put("from",	"నుండి");
+
+        prepositionsForTime = new LinkedHashMap<>();
+        prepositionsForTime.put("on",	"కు / కి");
+        prepositionsForTime.put("in",	"లో");
+        prepositionsForTime.put("at",	"కు / కి");
+        prepositionsForTime.put("since",	"నుండి");
+        prepositionsForTime.put("for",	"కోసం");
+        prepositionsForTime.put("ago",	"క్రితం");
+        prepositionsForTime.put("before",	"ముందు");
+        prepositionsForTime.put("to",	"కు / కి");
+        prepositionsForTime.put("to / till / until",	"వరకు");
+        prepositionsForTime.put("till / until",	"వరకు");
+        prepositionsForTime.put("by",	"కల్లా");
+    }
 
     public String generateSentence(String subject, String verb, String object, String tense, boolean isPositive) {
         String sentence = "";
