@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAnalytics analytics;
     private FirebaseCrashlytics crashlytics;
     private ProgressDialog progress;
-    private ArrayAdapter<Preposition> prepositionsAdapter;
+    private PrepositionsAdapter prepositionsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +55,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupPrepositionsAdapter() {
-        prepositionsAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, sentenceUtil.placePrepositions);
+        prepositionsAdapter = new PrepositionsAdapter(this,
+                android.R.layout.simple_list_item_1, sentenceUtil.otherPrepositions);
         binding.prepositionTxt.setAdapter(prepositionsAdapter);
+        binding.prepositionTxt.setThreshold(1);
     }
 
     private void updatePrepositionsAdapter(String type) {

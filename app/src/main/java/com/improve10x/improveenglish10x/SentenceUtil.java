@@ -14,6 +14,7 @@ public class SentenceUtil {
 
     public static List<Preposition> placePrepositions = new ArrayList<>();
     public static List<Preposition> timePrepositions = new ArrayList<>();
+    public static List<Preposition> otherPrepositions = new ArrayList<>();
     public static String[] suggestionVerbs = null;
 
     public SentenceUtil(){
