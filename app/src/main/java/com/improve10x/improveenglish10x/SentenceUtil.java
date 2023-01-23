@@ -44,22 +44,23 @@ public class SentenceUtil {
         prepositionsForTime.put("by",	"కల్లా");
     }
 
-    public String generateSentence(String subject, String verb, String object, String tense, boolean isPositive) {
+    public String generateSentence(String subject, String verb, String object, String tense, String preposition, boolean isPositive) {
         String sentence = "";
+        String prepObj = preposition + " " + object;
         if (tense.equalsIgnoreCase("present")) {
             if (subject.equalsIgnoreCase("I")) {
-                sentence = subject + " am " + getPerfectTenseForVerb(tense, verb, isPositive) + " " + object;
+                sentence = subject + " am " + getPerfectTenseForVerb(tense, verb, isPositive) + " " + prepObj;
             } else if (subject.equalsIgnoreCase("WE") || subject.equalsIgnoreCase("THEY")) {
-                sentence = subject + " are " + getPerfectTenseForVerb(tense, verb, isPositive) + " " + object;
+                sentence = subject + " are " + getPerfectTenseForVerb(tense, verb, isPositive) + " " + prepObj;
             } else if (subject.equalsIgnoreCase("IT") ||
                     subject.equalsIgnoreCase("SHE") ||
                     subject.equalsIgnoreCase("HE")) {
-                sentence = subject + " is " + getPerfectTenseForVerb(tense, verb, isPositive) + " " + object;
+                sentence = subject + " is " + getPerfectTenseForVerb(tense, verb, isPositive) + " " + prepObj;
             } else {
                 sentence = subject + getPerfectTenseForVerb(tense, verb, isPositive);
             }
         } else {
-            sentence = subject + " " + getPerfectTenseForVerb(tense, verb, isPositive) + " " + object;
+            sentence = subject + " " + getPerfectTenseForVerb(tense, verb, isPositive) + " " + prepObj;
         }
         sentence = sentence.trim() + ".";
         return sentence;
