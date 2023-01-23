@@ -31,6 +31,7 @@ import com.improve10x.improveenglish10x.models.ErrorReport;
 import com.improve10x.improveenglish10x.models.Preposition;
 import com.improve10x.improveenglish10x.models.Suggestions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupPrepositionsAdapter() {
         prepositionsAdapter = new PrepositionsAdapter(this,
-                android.R.layout.simple_list_item_1, sentenceUtil.otherPrepositions);
+                android.R.layout.simple_list_item_1, new ArrayList<>());
         binding.prepositionTxt.setAdapter(prepositionsAdapter);
         binding.prepositionTxt.setThreshold(1);
     }
@@ -75,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         } else if(type.equalsIgnoreCase("time")) {
             prepositionsAdapter.addAll(sentenceUtil.timePrepositions);
         } else {
-            prepositionsAdapter.addAll(sentenceUtil.otherPrepositions);
             prepositionsAdapter.addAll(sentenceUtil.otherPrepositions);
         }
         prepositionsAdapter.notifyDataSetChanged();
@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void handlePrepositionsRadioGroup() {
         binding.prepositionTypeRg.setOnCheckedChangeListener((group, checkedId) -> {
-            binding.prepositionTxt.dismissDropDown();
             if(checkedId == R.id.preposition_place_rb) {
                 updatePrepositionsAdapter("place");
             } else if(checkedId == R.id.preposition_time_rb) {
