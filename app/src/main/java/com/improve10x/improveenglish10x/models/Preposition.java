@@ -17,6 +17,6 @@ public class Preposition implements Serializable {
 
     @Override
     public String toString() {
-        return value + " - " + teluguValue;
+        return value;
     }
 }

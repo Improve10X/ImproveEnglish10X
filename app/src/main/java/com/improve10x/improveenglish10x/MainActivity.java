@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -17,13 +18,13 @@ import android.widget.Toast;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.Chip;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.improve10x.improveenglish10x.databinding.ActivityMainBinding;
-import com.improve10x.improveenglish10x.models.Preposition;
 import com.improve10x.improveenglish10x.models.Suggestions;
 
 public class MainActivity extends AppCompatActivity {
@@ -243,12 +244,12 @@ public class MainActivity extends AppCompatActivity {
         String subject = selectedSubject.getText().toString();
         String verbOrAction = binding.verbOrActionLayout.getEditText().getText().toString().trim();
         String objectText = binding.objectLayout.getEditText().getText().toString().trim();
+        String preposition = binding.prepositionTxt.getText().toString();
         RadioButton selectedTense = findViewById(binding.tenseRg.getCheckedRadioButtonId());
         String tense = selectedTense.getText().toString();
         Boolean isPositive = binding.positiveSwitch.isChecked();
-        // TODO : set preposition
         String sentence = sentenceUtil.generateSentence(subject,
-                verbOrAction, objectText, tense, "", isPositive);
+                verbOrAction, objectText, tense, preposition, isPositive);
         binding.sentenseTxt.setText(sentence);
         logSentence(sentence);
     }
